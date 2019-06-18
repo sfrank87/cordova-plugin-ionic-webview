@@ -70,7 +70,7 @@
     NSArray *stack = [NSThread callStackSymbols];
     for(NSString *trace in stack) {
         if([trace containsString:@"WebKit"]) {
-            [a setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+            //[a setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
             break;
         }
     }
@@ -263,7 +263,7 @@ NSTimer *timer;
     [self.engineWebView removeFromSuperview];
     WKWebView* wkWebView = [[WKWebView alloc] initWithFrame:self.frame configuration:configuration];
 
-    [wkWebView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    //[wkWebView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
 
     wkWebView.UIDelegate = self.uiDelegate;
     self.engineWebView = wkWebView;
