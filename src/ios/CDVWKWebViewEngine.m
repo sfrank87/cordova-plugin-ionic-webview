@@ -258,12 +258,17 @@ NSTimer *timer;
     self.handler = [[IONAssetHandler alloc] initWithBasePath:[self getStartPath] andScheme:scheme];
     [configuration setURLSchemeHandler:self.handler forURLScheme:scheme];
 
-    NSLog(@"Hallo");
+    NSLog(@"Hallo2");
     if (@available(iOS 11.0, *)) {
+        /*
         UIWindow *window = UIApplication.sharedApplication.keyWindow[0];
         CGFloat topPadding = window.safeAreaInsets.top;
         CGFloat bottomPadding = window.safeAreaInsets.bottom;
         NSLog(@"top: %f, btm: %f", topPadding, bottomPadding);
+        */
+        UILayoutGuide *guide = self.engineWebView.safeAreaLayoutGuide;
+        CGFloat hg = guide.layoutFrame.size.height;
+        NSLog(@"H: %f",hg);
     }
 
     // re-create WKWebView, since we need to update configuration
