@@ -70,7 +70,7 @@
     NSArray *stack = [NSThread callStackSymbols];
     for(NSString *trace in stack) {
         if([trace containsString:@"WebKit"]) {
-            //[a setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+            [a setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
             break;
         }
     }
@@ -258,12 +258,20 @@ NSTimer *timer;
     self.handler = [[IONAssetHandler alloc] initWithBasePath:[self getStartPath] andScheme:scheme];
     [configuration setURLSchemeHandler:self.handler forURLScheme:scheme];
 
+    NSLog(@"Hallo");
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        CGFloat topPadding = window.safeAreaInsets.top;
+        CGFloat bottomPadding = window.safeAreaInsets.bottom;
+        NSLog(@"top: %f, btm: %f", topPadding, bottomPadding);
+    }
+
     // re-create WKWebView, since we need to update configuration
     // remove from keyWindow before recreating
     [self.engineWebView removeFromSuperview];
     WKWebView* wkWebView = [[WKWebView alloc] initWithFrame:self.frame configuration:configuration];
 
-    //[wkWebView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    [wkWebView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
 
     wkWebView.UIDelegate = self.uiDelegate;
     self.engineWebView = wkWebView;
