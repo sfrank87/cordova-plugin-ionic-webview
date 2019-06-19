@@ -260,7 +260,7 @@ NSTimer *timer;
 
     NSLog(@"Hallo");
     if (@available(iOS 11.0, *)) {
-        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        UIWindow *window = UIApplication.sharedApplication.keyWindow[0];
         CGFloat topPadding = window.safeAreaInsets.top;
         CGFloat bottomPadding = window.safeAreaInsets.bottom;
         NSLog(@"top: %f, btm: %f", topPadding, bottomPadding);
